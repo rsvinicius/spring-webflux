@@ -1,0 +1,13 @@
+server:
+  port: 9080
+
+spring:
+  application:
+    name: spring-webflux
+  webflux:
+    base-path: /spring-webflux
+  data:
+    mongodb:
+      authentication-database: admin
+      uri: mongodb://localhost:27017/dev
+      database: dev
