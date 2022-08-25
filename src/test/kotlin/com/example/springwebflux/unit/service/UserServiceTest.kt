@@ -47,11 +47,7 @@ class UserServiceTest {
                 assert(u.salary == 16000.0)
                 assert(u.department == "IT")
             }
-            .verifyComplete()
-
-        StepVerifier
-            .create(user)
-            .expectNextCount(1)
+            .expectNextCount(0)
             .verifyComplete()
     }
 
@@ -78,11 +74,7 @@ class UserServiceTest {
                 assert(u.id == "3")
                 assert(u.name == "John Oliver")
             }
-            .verifyComplete()
-
-        StepVerifier
-            .create(users)
-            .expectNextCount(3)
+            .expectNextCount(0)
             .verifyComplete()
     }
 
@@ -104,44 +96,23 @@ class UserServiceTest {
                 assert(u.salary == 10000.0)
                 assert(u.department == "HR")
             }
+            .expectNextCount(0)
             .verifyComplete()
-
-        StepVerifier
-            .create(user)
-            .expectNextCount(1)
-            .verifyComplete()
-
     }
 
     @Test
     @DisplayName("Delete user successfully")
     fun deleteUserTest() {
         every {
-            userRepository.findById("1")
-        } returns Mono.just(validUserOne())
-
-        every {
-            userRepository.delete(any())
+            userRepository.deleteById("1")
         } returns Mono.empty()
 
         val deletedUser = userService.deleteUser("1")
 
         StepVerifier
             .create(deletedUser)
-            .consumeNextWith { u ->
-                assert(u.id == "1")
-                assert(u.name == "John William")
-                assert(u.age == 25)
-                assert(u.salary == 16000.0)
-                assert(u.department == "IT")
-            }
+            .expectNextCount(0)
             .verifyComplete()
-
-        StepVerifier
-            .create(deletedUser)
-            .expectNextCount(1)
-            .verifyComplete()
-
     }
 
     @Test
@@ -166,13 +137,8 @@ class UserServiceTest {
                 assert(u.salary == 14000.0)
                 assert(u.department == "IT")
             }
+            .expectNextCount(0)
             .verifyComplete()
-
-        StepVerifier
-            .create(user)
-            .expectNextCount(1)
-            .verifyComplete()
-
     }
 
     @Test
@@ -196,11 +162,7 @@ class UserServiceTest {
                 assert(u.name == "John William")
                 assert(u.age == 25)
             }
-            .verifyComplete()
-
-        StepVerifier
-            .create(users)
-            .expectNextCount(2)
+            .expectNextCount(0)
             .verifyComplete()
     }
 }

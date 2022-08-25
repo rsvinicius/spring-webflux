@@ -4,7 +4,6 @@ import com.example.springwebflux.mock.UserMock.validUserOne
 import com.example.springwebflux.mock.UserMock.validUserThree
 import com.example.springwebflux.mock.UserMock.validUserTwo
 import com.example.springwebflux.repository.UserRepository
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -13,7 +12,6 @@ import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
 import reactor.test.StepVerifier
 
 @ActiveProfiles("test")
@@ -44,18 +42,7 @@ class UserRepositoryTest {
                 assert(user.name == "John William")
                 assert(user.age == 25)
             }
+            .expectNextCount(0)
             .verifyComplete()
-
-        StepVerifier
-            .create(usersFound)
-            .expectNextCount(2)
-            .verifyComplete()
-    }
-
-    @AfterEach
-    fun cleanDB() {
-        userRepository.findAll().flatMap { user ->
-            userRepository.delete(user)
-        }
     }
 }
