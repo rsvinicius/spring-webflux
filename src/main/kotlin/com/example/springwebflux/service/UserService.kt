@@ -49,12 +49,11 @@ class UserService(
         }
     }
 
-    fun deleteUser(id: String): Mono<User> {
+    fun deleteUser(id: String): Mono<Void> {
         logger.info {
             "deleteUser: deleting user with id=${id}"
         }
-        return userRepository.findById(id)
-            .flatMap { user -> userRepository.delete(user).then(Mono.just(user)) }.also {
+        return userRepository.deleteById(id).also {
                 logger.info {
                     "getUserById: user deleted id=${id}"
                 }
