@@ -18,7 +18,7 @@ class RouterConfig(private val handler: UserHandler) {
                 GET("", handler::getAllUsers)
                 GET("/search", handler::searchUsers)
                 GET("/{id}", handler::getUserById)
-                POST("/{id}", handler::deleteUser)
+                DELETE("/{id}", handler::deleteUser)
                 PUT("/{id}", handler::updateUser)
             }
         }

@@ -36,7 +36,7 @@ class UserHandler(private val userService: UserService) {
             .flatMap { user ->
                 ok()
                     .contentType(MediaType.APPLICATION_JSON)
-                    .body(user, User::class.java)
+                    .bodyValue(user)
             }
     }
 
@@ -46,7 +46,7 @@ class UserHandler(private val userService: UserService) {
             .flatMap { user ->
                 ok()
                     .contentType(MediaType.APPLICATION_JSON)
-                    .body(user, User::class.java)
+                    .bodyValue(user)
             }
     }
 

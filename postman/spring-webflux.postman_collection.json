@@ -90,7 +90,7 @@
 				{
 					"name": "deleteUser",
 					"request": {
-						"method": "POST",
+						"method": "DELETE",
 						"header": [],
 						"url": {
 							"raw": "localhost:9080/spring-webflux/api/v1/users/:id",
@@ -260,7 +260,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "\"string\""
+									"value": "string"
 								}
 							]
 						}
@@ -270,7 +270,7 @@
 				{
 					"name": "deleteUser",
 					"request": {
-						"method": "POST",
+						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -298,7 +298,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "\"string\""
+									"value": "string"
 								}
 							]
 						}
